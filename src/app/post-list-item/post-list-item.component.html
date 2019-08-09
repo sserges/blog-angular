@@ -1,0 +1,15 @@
+<li class="list-group-item"
+    [ngClass]="{'list-group-item': true, 'list-group-item-success': loveIts > 0, 'list-group-item-danger': loveIts < 0}">
+    <h2>{{ title }} <span class="pull-right">{{ createdAt | date: 'short' }}</span></h2>
+    <p>
+        {{content}}
+    </p>
+    <p
+        [ngClass]="{'label pull-right': true, 'label-default': loveIts === 0, 'label-success': loveIts > 0, 'label-danger': loveIts < 0}">
+        {{loveIts}} <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+    </p>
+
+    <button (click)="handleLoveIts()" style="margin-right: 10px;" class="btn btn-success">Love it</button>
+    <button (click)="handleDontLoveIts()" class="btn btn-danger">Don't love it</button>
+
+</li>
