@@ -8,7 +8,7 @@ import { PostListItemComponent } from './post-list-item/post-list-item.component
 import { HeaderComponent } from './header/header.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { AppRoutingModule } from './app-routing.module';
-// import { PostsService } from './services/posts.service';
+import { PostsService } from './services/posts.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { AppRoutingModule } from './app-routing.module';
     ReactiveFormsModule
   ],
   providers: [
-    // PostsService
+    PostsService
   ],
   bootstrap: [AppComponent]
 })
