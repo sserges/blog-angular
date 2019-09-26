@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Post } from './models/Post.model';
+import { PostsService } from './services/posts.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,24 +9,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  posts = [
-    {
-      title: 'Mon Premier Article',
-      content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-      loveIts: 0,
-      createdAt: new Date()
-    },
-    {
-      title: 'Mon Deuxième Article',
-      content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-      loveIts: 0,
-      createdAt: new Date()
-    },
-    {
-      title: 'Mon Troisième Article',
-      content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-      loveIts: 0,
-      createdAt: new Date()
-    }
-  ];
+
+
 }
