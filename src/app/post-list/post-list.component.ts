@@ -22,7 +22,7 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.posts = posts;
       }
     );
-
+    this.postService.getPosts();
     this.postService.emitPosts();
   }
 

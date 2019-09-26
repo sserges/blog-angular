@@ -1,41 +1,35 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../models/Post.model';
 import { Subject } from 'rxjs';
+import { database } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
-  posts: Post[] = [
-    {
-      title: 'Mon Premier Article',
-      content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-      loveIts: 0,
-      createdAt: new Date()
-    },
-    {
-      title: 'Mon Deuxième Article',
-      content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-      loveIts: 0,
-      createdAt: new Date()
-    },
-    {
-      title: 'Mon Troisième Article',
-      content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit.',
-      loveIts: 0,
-      createdAt: new Date()
-    }
-  ];
+  posts: Post[] = [];
   postsSubject = new Subject<Post[]>();
 
   emitPosts() {
     this.postsSubject.next(this.posts);
   }
 
+  savePosts() {
+    database().ref('/posts').set(this.posts);
+  }
+
+  getPosts() {
+    database().ref('/posts').on('value', (data: database.DataSnapshot) => {
+      this.posts = data.val() ? data.val() : [];
+      this.emitPosts();
+    });
+  }
+
   constructor() { }
 
   createNewPost(newPost: Post) {
     this.posts.push(newPost);
+    this.savePosts();
     this.emitPosts();
   }
 
@@ -49,6 +43,7 @@ export class PostsService {
     );
 
     this.posts.splice(postIndexToRemove, 1);
+    this.savePosts();
     this.emitPosts();
   }
 }
